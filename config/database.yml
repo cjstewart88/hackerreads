@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: hackerreads
+  pool: 5
+  timeout: 5000
+  username: postgres
