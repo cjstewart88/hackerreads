@@ -1,8 +1,67 @@
+@import "compass";
+
+html {
+  overflow-y: scroll;
+  line-height: 28px;
+}
+
 body {
-  background: blue;
-  color: white;
+  font-family: 'Droid Serif', serif;
   
-  div {
-    color: yellow;
+  a {
+    text-decoration: none;
+    color: #000;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.main-container {
+  max-width: 1024px;
+  margin: 20px auto;
+}
+
+#main-header {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+#reads {
+  #reads-list {
+    padding: 0;
+    margin: 0;
+    min-height: 400px;
+    list-style-type: none;
+    
+    &.reads-list-loading {
+      background: url("/assets/loading.gif") center center no-repeat;
+      
+      li {
+        display: none;
+      }
+    }
+    
+    .reads-read {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: dashed 1px black;
+      
+      .source {
+        font-size: 12px;
+        
+        &.hackernews {
+          color: #F60;
+        }
+        
+        &.reddit {
+          color: #5F99CF;
+        }
+      }
+      .read-meta-data {
+        font-size: 12px;
+      }
+    }
   }
 }

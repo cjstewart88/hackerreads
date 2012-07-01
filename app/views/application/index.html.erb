@@ -1,0 +1,17 @@
+<section id="reads" class="main-container">
+  <ol id="reads-list" class="reads-list-loading">
+    <script id="read" type="text/html">
+      <li class="reads-read">
+        <a href="{{url}}" target="_blank">{{title}}</a>
+        <div class="read-meta-data">
+          <span class="date">{{pretty_created}}</span> on 
+          <a href="{{source_url}}" target="_blank" class="source {{source_class}}">{{source}}</a>
+        </div>
+      </li>
+    </script>
+  </ol>
+  
+  <script>
+    $("#reads-list").readRetriever();
+  </script>
+</section>
