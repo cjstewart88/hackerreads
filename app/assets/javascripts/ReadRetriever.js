@@ -26,20 +26,22 @@
       });
     }
     
-    $.each(["programming", "technology", "science"], function () {
+    $.each(["programming", "technology", "science", "webdev"], function() {
       retrieve_reddit_data(this);
     });
     
-    $.when(requests["programming"], requests["technology"], requests["science"]).done(function (r1, r2, r3) {
+    $.when(requests["programming"], requests["technology"], requests["science"], requests["webdev"]).done(function (r1, r2, r3) {
       reads.sort(function(a, b) {
-          return b.created - a.created;
+        return b.created - a.created;
       });
       
-      $.each(reads, function () {
+      $.each(reads, function() {
         self.append(ich.read(this));
       });
       
-      self.removeClass("reads-list-loading");
+      self.readsPaging();
+      
+      self.removeClass("loading");
     });
   };
 })(jQuery);

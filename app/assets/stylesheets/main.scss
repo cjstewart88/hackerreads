@@ -35,7 +35,7 @@ body {
     min-height: 400px;
     list-style-type: none;
     
-    &.reads-list-loading {
+    &.loading {
       background: url("/assets/loading.gif") center center no-repeat;
       
       li {
@@ -43,7 +43,8 @@ body {
       }
     }
     
-    .reads-read {
+    .read {
+      display: none;
       margin-bottom: 15px;
       padding-bottom: 15px;
       border-bottom: dashed 1px black;
