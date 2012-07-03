@@ -25,23 +25,61 @@
         });
       });
     }
+
+    function retrieve_hackernews_data () {
+      requests["hackernews"] = $.jsonp({
+        "url": "http://api.ihackernews.com/page?format=jsonp&callback=?",
+        "data": {
+          "alt": "json-in-script"
+        },
+        "success": function(data) {
+          $.each(data.items, function() {
+            var read_data = this;
+
+            if (read_data.postedAgo != null) { 
+              var a_read = {
+                title:          read_data.title,
+                url:            read_data.url,
+                pretty_created: read_data.postedAgo,
+                source:         "hackernews",
+                source_class:   "hackernews",
+                source_url:     "http://news.ycombinator.com/"
+              }
+
+              reads.push(a_read);
+            }
+          }); 
+        },
+        "error": function(d, msg) {
+          return [ "success", "b", "c" ];
+        }
+      });
+    }
     
     $.each(["programming", "technology", "science", "webdev", "blackhat"], function() {
       retrieve_reddit_data(this);
     });
     
-    $.when(requests["programming"], requests["technology"], requests["science"], requests["webdev"], requests["blackhat"]).done(function (r1, r2, r3, r4) {
-      reads.sort(function(a, b) {
-        return b.created - a.created;
-      });
-      
+    retrieve_hackernews_data();
+    
+    function requests_finished () {
+     reads = self.sortByAgo(reads);
+
       $.each(reads, function() {
         self.append(ich.read(this));
       });
-      
+
       self.readsPaging();
-      
+
       self.removeClass("loading");
-    });
+    }
+    
+    $.when(requests["programming"], requests["technology"], requests["science"], requests["blackhat"], requests["hackernews"])
+      .done(function () { 
+        requests_finished();
+      })
+      .fail(function () {
+        requests_finished();
+      });
   };
 })(jQuery);
