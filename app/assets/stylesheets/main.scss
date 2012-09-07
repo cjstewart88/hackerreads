@@ -2,7 +2,6 @@
 
 html {
   overflow-y: scroll;
-  line-height: 28px;
 }
 
 body {
@@ -12,8 +11,8 @@ body {
     text-decoration: none;
     color: #000;
     
-    &:hover {
-      text-decoration: underline;
+    &:visited {
+      color: #828282;
     }
   }
 }
@@ -37,31 +36,22 @@ body {
     
     &.loading {
       background: url("/assets/loading.gif") center center no-repeat;
-      
-      li {
-        display: none;
-      }
     }
     
     .read {
       display: none;
       margin-bottom: 15px;
       padding-bottom: 15px;
-      border-bottom: dashed 1px black;
+      line-height: 24px;
+      border-bottom: dashed 1px #CCC;
       
-      .source {
-        font-size: 12px;
-        
-        &.hackernews {
-          color: #F60;
-        }
-        
-        &.reddit {
-          color: #5F99CF;
-        }
-      }
       .read-meta-data {
         font-size: 12px;
+        color: #828282;
+        
+        a {
+          color: #828282;
+        }
       }
     }
   }

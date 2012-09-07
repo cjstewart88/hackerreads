@@ -3,9 +3,12 @@
     <script id="read" type="text/html">
       <li class="read">
         <a href="{{url}}" target="_blank">{{title}}</a>
+        
         <div class="read-meta-data">
           <span class="date">{{pretty_created}}</span> on 
-          <a href="{{source_url}}" target="_blank" class="source {{source_class}}">{{source}}</a>
+          <a href="{{source_url}}" target="_blank" class="source">{{source}}</a> 
+          - 
+          <a href="{{comments_url}}" target="_blank">{{comments_count}} comments</a>
         </div>
       </li>
     </script>
