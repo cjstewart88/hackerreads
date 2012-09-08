@@ -4,28 +4,28 @@
     var reads     = [];
     var requests  = [];
     
-    self.retrieve_reddit_data = function (sub_reddit) {
-      requests[sub_reddit] = $.getJSON("http://www.reddit.com/r/" + sub_reddit + "/hot.json?jsonp=?&limit=100", function (data) {
+    self.retrieveRedditData = function (subReddit) {
+      requests[subReddit] = $.getJSON("http://www.reddit.com/r/" + subReddit + "/hot.json?jsonp=?&limit=100", function (data) {
         $.each(data.data.children, function () {
-          var read_data = this.data;
+          var readData = this.data;
           
-          var a_read = {
-            title:          read_data.title,
-            url:            read_data.url,
-            created:        read_data.created_utc,
-            pretty_created: $.timeago(new Date(read_data.created_utc*1000)),
-            source:         "r/" + sub_reddit,
-            source_url:     "http://www.reddit.com/r/" + sub_reddit,
-            comments_url:   "http://www.reddit.com" + read_data.permalink,
-            comments_count: read_data.num_comments
+          var aRead = {
+            title:          readData.title,
+            url:            readData.url,
+            created:        readData.created_utc,
+            timeAgo:        $.timeago(new Date(readData.created_utc*1000)),
+            source:         "r/" + subReddit,
+            sourceUrl:      "http://www.reddit.com/r/" + subReddit,
+            commentsUrl:    "http://www.reddit.com" + readData.permalink,
+            commentsCount:  readData.num_comments
           }
 
-          reads.push(a_read);
+          reads.push(aRead);
         });
       });
     }
 
-    self.retrieve_hackernews_data = function () {
+    self.retrieveHackernewsData = function () {
       requests["hackernews"] = $.jsonp({
         "url": "http://api.ihackernews.com/page?format=jsonp&callback=?",
         "data": {
@@ -33,20 +33,20 @@
         },
         "success": function (data) {
           $.each(data.items, function () {
-            var read_data = this;
+            var readData = this;
             
-            if (read_data.postedAgo != null) { 
-              var a_read = {
-                title:          read_data.title,
-                url:            read_data.url,
-                pretty_created: read_data.postedAgo,
+            if (readData.postedAgo != null) { 
+              var aRead = {
+                title:          readData.title,
+                url:            readData.url,
+                timeAgo:        readData.postedAgo,
                 source:         "hackernews",
-                source_url:     "http://news.ycombinator.com/",
-                comments_url:   "http://news.ycombinator.com/item?id=" + read_data.id,
-                comments_count: read_data.commentCount
+                sourceUrl:      "http://news.ycombinator.com/",
+                commentsUrl:    "http://news.ycombinator.com/item?id=" + readData.id,
+                commentsCount:  readData.commentCount
               }
 
-              reads.push(a_read);
+              reads.push(aRead);
             }
           }); 
         },
@@ -56,8 +56,8 @@
       });
     }
     
-    self.requests_finished = function () {
-     reads = $.sortByAgo(reads);
+    self.requestsFinished = function () {
+     reads = $.sortByTimeAgo(reads);
 
       $.each(reads, function () {
         self.append(ich.read(this));
@@ -70,18 +70,18 @@
     
     // fetch the data
     $.each(["programming", "technology", "science", "webdev", "blackhat"], function() {
-      self.retrieve_reddit_data(this);
+      self.retrieveRedditData(this);
     });
     
-    self.retrieve_hackernews_data();
+    self.retrieveHackernewsData();
     
     // when the data is ready or errors
     $.when(requests["programming"], requests["technology"], requests["science"], requests["blackhat"], requests["hackernews"])
       .done(function () { 
-        self.requests_finished();
+        self.requestsFinished();
       })
       .fail(function () {
-        self.requests_finished();
+        self.requestsFinished();
       });
   };
 })(jQuery);
