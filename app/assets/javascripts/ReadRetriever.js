@@ -57,9 +57,9 @@
     }
     
     self.requestsFinished = function () {
-     reads = $.sortByTimeAgo(reads);
+      sortedReads = $.sortByTimeAgo(reads);
 
-      $.each(reads, function () {
+      $.each(sortedReads, function () {
         self.append(ich.read(this));
       });
 
