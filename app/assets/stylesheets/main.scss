@@ -41,16 +41,20 @@ body {
     
     .read {
       display: none;
-      margin-bottom: 15px;
-      padding-bottom: 15px;
-      line-height: 24px;
       border-bottom: dashed 1px #CCC;
       
       &:last-child {
         border-bottom: none;
       }
       
-      .read-meta-data {
+      a {
+        display: block;
+        padding: 15px 0;
+        line-height: 24px;
+      }
+      
+      .time-ago {
+        display: block;
         font-size: 12px;
         color: #828282;
       }
