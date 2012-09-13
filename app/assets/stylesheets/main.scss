@@ -7,6 +7,9 @@ html {
 body {
   font-family: 'Droid Serif', serif;
   
+  max-width: 800px;
+  margin: 0 auto;
+  
   a {
     text-decoration: none;
     color: #000;
@@ -17,14 +20,11 @@ body {
   }
 }
 
-.main-container {
-  max-width: 1024px;
-  margin: 20px auto;
-}
-
 #main-header {
+  text-align: center;
   font-size: 20px;
   font-weight: 700;
+  margin: 40px 0;
 }
 
 #reads {
@@ -45,13 +45,13 @@ body {
       line-height: 24px;
       border-bottom: dashed 1px #CCC;
       
+      &:last-child {
+        border-bottom: none;
+      }
+      
       .read-meta-data {
         font-size: 12px;
         color: #828282;
-        
-        a {
-          color: #828282;
-        }
       }
     }
   }

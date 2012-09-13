@@ -13,11 +13,7 @@
             title:          readData.title,
             url:            readData.url,
             created:        readData.created_utc,
-            timeAgo:        $.timeago(new Date(readData.created_utc*1000)),
-            source:         "r/" + subReddit,
-            sourceUrl:      "http://www.reddit.com/r/" + subReddit,
-            commentsUrl:    "http://www.reddit.com" + readData.permalink,
-            commentsCount:  readData.num_comments
+            timeAgo:        $.timeago(new Date(readData.created_utc*1000))
           }
 
           reads.push(aRead);
@@ -39,11 +35,7 @@
               var aRead = {
                 title:          readData.title,
                 url:            readData.url,
-                timeAgo:        readData.postedAgo,
-                source:         "hackernews",
-                sourceUrl:      "http://news.ycombinator.com/",
-                commentsUrl:    "http://news.ycombinator.com/item?id=" + readData.id,
-                commentsCount:  readData.commentCount
+                timeAgo:        readData.postedAgo
               }
 
               reads.push(aRead);
