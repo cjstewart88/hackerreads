@@ -13,7 +13,9 @@
             title:          readData.title,
             url:            readData.url,
             created:        readData.created_utc,
-            timeAgo:        $.timeago(new Date(readData.created_utc*1000))
+            timeAgo:        $.timeago(new Date(readData.created_utc*1000)),
+            commentUrl:     "http://www.reddit.com" + readData.permalink,
+            commentCount:   readData.num_comments
           }
 
           reads.push(aRead);
@@ -35,7 +37,9 @@
               var aRead = {
                 title:          readData.title,
                 url:            readData.url,
-                timeAgo:        readData.postedAgo
+                timeAgo:        readData.postedAgo,
+                commentUrl:     "http://news.ycombinator.com/item?id=" + readData.id,
+                commentCount:   readData.commentCount
               }
 
               reads.push(aRead);

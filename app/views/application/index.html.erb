@@ -2,10 +2,14 @@
   <ol id="reads-list" class="loading">
     <script id="read" type="text/html">
       <li class="read">
-        <a href="{{url}}" target="_blank">
-          {{title}}        
-          <span class="time-ago">{{timeAgo}}</span>
-        </a>
+        <a href="{{url}}" target="_blank" class="read-link">
+          {{title}}
+        </a>   
+             
+        <div class="meta">
+          <span class="time-ago">{{timeAgo}}</span> - 
+          <a href="{{commentUrl}}" target="_blank" class="comment-link">{{commentCount}} comments</a>
+        </div>   
       </li>
     </script>
   </ol>
